@@ -5,7 +5,7 @@ import json
 import requests
 import uuid
 from analyzer.sam import segmentImage
-import image
+from django.http import JsonResponse
 
 def analyze(request):
   image_url = request.GET["url"]
@@ -14,7 +14,12 @@ def analyze(request):
   with open("temp/input/"+filename, 'wb') as handler:
     handler.write(img_data)
   
-  output_file = segmentImage(filename)
+  response = segmentImage(filename)
 
-  with open(output_file, "rb") as f:
+  return JsonResponse(response)
+  
+def get_image(request):
+  image_path = request.GET["path"]
+  
+  with open(image_path, "rb") as f:
     return HttpResponse(f.read(), content_type="image/jpeg")

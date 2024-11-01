@@ -11,3 +11,6 @@ requests
 uuid
 image
 opencv-python
+torch
+supervision
+torchvision

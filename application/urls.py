@@ -18,12 +18,13 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from rest_framework import routers, serializers, viewsets
 from django.contrib.auth.models import User
-from application.views import analyze
+from application.views import analyze, get_image
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/analyze', analyze, name="analyze"),
+    path('api/get_image', get_image, name="get_image"),
     path('', TemplateView.as_view(template_name='index.html')),
 ]
