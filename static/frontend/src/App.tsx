@@ -8,19 +8,20 @@ const API_KEY = "AIzaSyDaPmqnqmA8eM8KjWiZF6aEflbBsSy-nd8"
 const API_EP = "http://localhost:8000/api/analyze"
 
 const App = () => {
+  const [map, setMap] = useState<google.maps.Map>()
   const [tab, setTab] = useState('explore')
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState('')
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: API_KEY,
   });
-  const [config] = useState({
+  const [config, setConfig] = useState({
     center: { lat: -8.7286587, lng: 115.1987765 },
     zoom: 15,
     options: {
       zoomControl: false,
       tilt: 0,
-      gestureHandling: 'none',
+      gestureHandling: 'auto',
       mapTypeId: 'satellite',
       disableDefaultUI: true,
     }
@@ -39,6 +40,17 @@ const App = () => {
     setTab('analysis')
   }
 
+  const handleZoomChanged = () => {
+    config.zoom = map?.getZoom() || config.zoom
+    setConfig({ ...config });
+  }
+
+  const handleCenterChanged = () => {
+    config.center.lat = map?.getCenter()?.lat() || config.center.lat
+    config.center.lng = map?.getCenter()?.lng() || config.center.lng
+    setConfig({ ...config });
+  };
+
   return (
     <>
       <Navbar/>
@@ -54,10 +66,15 @@ const App = () => {
                 <h1>Loading...</h1>
               ) : (
                 <GoogleMap
+                  onLoad={map => {
+                    setMap(map)
+                  }}
                   mapContainerClassName="map-container"
                   center={config.center}
                   zoom={config.zoom}
                   options={config.options}
+                  onZoomChanged={handleZoomChanged}
+                  onCenterChanged={handleCenterChanged}
                 />
               )}
             </div>}
