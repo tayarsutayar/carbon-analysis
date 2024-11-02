@@ -24,7 +24,7 @@ const App = () => {
   });
   const [config, setConfig] = useState({
     center: { lat: -8.7286587, lng: 115.1987765 },
-    zoom: 15,
+    zoom: 14,
     options: {
       zoomControl: false,
       tilt: 0,
@@ -39,6 +39,9 @@ const App = () => {
     try{
       const params = new URLSearchParams();
       params.append('url', `https://maps.googleapis.com/maps/api/staticmap?center=${config.center.lat},${config.center.lng}&zoom=${config.zoom}&size=600x600&maptype=${config.options.mapTypeId}&key=${API_KEY}`);
+      params.append('zoom', config.zoom.toString());
+      params.append('longitude', config.center.lng.toString());
+      params.append('latitude', config.center.lat.toString());
       const queryString = params.toString();
       const response = await fetch(API_EP+'/analyze?'+queryString)
 

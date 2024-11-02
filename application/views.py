@@ -8,13 +8,14 @@ from analyzer.sam import segmentImage
 from django.http import JsonResponse
 
 def analyze(request):
-  image_url = request.GET["url"]
-  img_data = requests.get(image_url).content
+  img_data = requests.get(request.GET["url"]).content
+  zoom = int(request.GET["zoom"])
+  latitude = float(request.GET["latitude"])
   filename = str(uuid.uuid4())+".jpg"
   with open("temp/input/"+filename, 'wb') as handler:
     handler.write(img_data)
   
-  response = segmentImage(filename)
+  response = segmentImage(filename=filename, zoom=zoom, latitude=latitude)
 
   return JsonResponse(response)
   
