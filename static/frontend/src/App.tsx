@@ -153,9 +153,11 @@ const App = () => {
         </div>}
 
         {result.output_path == '' && <div className="w-[550px] h-[600px] z-20 bg-stone-100 rounded-xl p-2 shadow-lg border mt-8 flex items-center">
-          <button onClick={analyze} className="bg-yellow-400 px-5 py-3 rounded-lg font-bold mx-auto my-auto" disabled={loading ? true : false}>
+          <span className="text-center w-full">Silahkan cari Area yang anda inginkan kemudian klik analisis untuk mendapatkan potensi nilai karbon
+          <button onClick={analyze} className="w-full bg-yellow-400 px-5 py-3 rounded-lg font-bold mx-auto my-auto" disabled={loading ? true : false}>
             {loading ? 'Analyzing...' : 'Analyze'}
           </button>
+          </span>
         </div>}
       </div>
     </>
