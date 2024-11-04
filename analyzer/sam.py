@@ -7,9 +7,6 @@ import supervision as sv
 from PIL import Image
 import numpy as np
 import math
-import locale
-
-locale.setlocale(locale.LC_ALL, 'en_US')
 
 DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 MODEL_TYPE = "vit_h"
