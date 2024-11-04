@@ -1,7 +1,4 @@
-# Django React Boilerplate
-The Django-React Boilerplate is a starting point for building web applications that combine the Django backend framework with a React frontend where React app is being served by Django
-
-This project was generated using [vite](https://vitejs.dev/)
+# Carbon Analysis
 
 ## Requirements
 - Python 3.7+
@@ -11,11 +8,6 @@ This project was generated using [vite](https://vitejs.dev/)
 ## Installation
 
 ### Backend
-- Clone the repository and navigate to the project directory
-  ```
-  git clone https://github.com/madhvi-n/django-react-boilerplate.git
-  cd django-react-boilerplate
-  ```
 
 - Create an environment and activate it
   ```
@@ -37,7 +29,7 @@ This project was generated using [vite](https://vitejs.dev/)
 ### Frontend
 - Navigate to the `static/frontend` directory:
   ```
-  cd static/frontend/todo-app
+  cd static/frontend
   ```
 
 - Install frontend dependencies
